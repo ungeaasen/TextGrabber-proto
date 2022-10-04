@@ -16,7 +16,6 @@ export default function Textgrab() {
 	const [string, setString] = useState(0)
 	const [currentUrl, setCurrentUrl] = useState(0)
 	let stringTo = '';
-	
 
 	const handleChange = (e) => {
     setState({value: e.target.value})
@@ -29,7 +28,7 @@ export default function Textgrab() {
 				//myLeads.push("from", stringTo)
 				//myLeads.push("to", state.value)
 				//myLeads.push("url", currentUrl)
-				localStorage.setItem("name.from", JSON.stringify(stringTo))
+				localStorage.setItem("name.from", JSON.stringify(string))
 				localStorage.setItem("name.to", JSON.stringify(state.value))
 				localStorage.setItem("name.url", JSON.stringify(currentUrl))
 				//localStorage.setItem("name", JSON.stringify(myLeads))
