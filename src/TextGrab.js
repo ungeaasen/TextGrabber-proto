@@ -16,6 +16,7 @@ export default function Textgrab() {
 	const [string, setString] = useState(0)
 	const [currentUrl, setCurrentUrl] = useState(0)
 	let stringTo = '';
+	
 
 	const handleChange = (e) => {
     setState({value: e.target.value})
@@ -25,10 +26,13 @@ export default function Textgrab() {
 		if (typeof window !== 'undefined') {
 			let locale = localStorage.getItem("name")
 			if(myLeads.indexOf(stringTo) <= -1) {
-				myLeads.push("name.from", stringTo)
-				myLeads.push("name.to", state.value)
-				myLeads.push("name.url", currentUrl)
-				localStorage.setItem("name", JSON.stringify(myLeads))
+				//myLeads.push("from", stringTo)
+				//myLeads.push("to", state.value)
+				//myLeads.push("url", currentUrl)
+				localStorage.setItem("name.from", JSON.stringify(stringTo))
+				localStorage.setItem("name.to", JSON.stringify(state.value))
+				localStorage.setItem("name.url", JSON.stringify(currentUrl))
+				//localStorage.setItem("name", JSON.stringify(myLeads))
 				setState({value: e.target.value})
 				console.log("locale " + locale + "MyLeads: " + myLeads)
 				alert("Sendt inn til retting! :)")

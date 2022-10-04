@@ -10,6 +10,11 @@ export default function TextGet() {
 	const handleChange = () => hasChanged(true)
 	const turnoffChange = () => hasChanged(false)
 	let parsedStr = []
+	let toStr = ""
+
+	const [to, setTo] = useState(0)
+	const [from, setFrom] = useState(0)
+	const [url, setUrl] = useState(0)
 
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
@@ -21,11 +26,21 @@ export default function TextGet() {
 
 	const getSome = () => {
 		const locale = localStorage.getItem("name")
-
+		
 		for (var i = 0; i < localStorage.length; i++){
 		    console.log("ENTRY NR: " + (i) + localStorage.getItem(localStorage.key(i)))
-		    parsedStr = JSON.parse(localStorage.getItem("name"))
+		   
 		    console.log(localStorage)
+		    console.log("name to: " + localStorage.getItem("name.to"))
+		    console.log("name from: " + localStorage.getItem("name.from"))
+		    console.log("url: " + localStorage.getItem("name.url"))
+		    let to = localStorage.getItem("name.to")
+		    let from = localStorage.getItem("name.from")
+		    let url = localStorage.getItem("name.url")
+		    setTo(to)
+		    setFrom(from)
+		    setUrl(url)
+		    console.log("To" + to)
 		    setString(locale)
 		}
 		turnoffChange()
@@ -39,12 +54,14 @@ export default function TextGet() {
 	return (
 		<Card className="fj-card" style={{ float: 'right', margin: '15px', width: '18rem', boxShadow: '5px 10px', backgroundColor: 'lightgrey' }}>
 			<Card.Body>
-			 <Card.Title><h2>Get some</h2></Card.Title>
+			 <Card.Title><h2>Hent forslag :)</h2></Card.Title>
 				<Card.Text>
-				{parsedStr.map((e) => {
-					return <p>{e}</p>
-				}
-				)}
+					<h5>Rettes Til:</h5>
+					<p>Forslag til: {to}</p>
+					<h5>Rettes fra:</h5>
+					<p> {from}</p>
+					<h5>URL:</h5>
+					<p>Url: {url}</p>
 				</Card.Text>
 				<Button variant="primary" onClick={getSome}>
 	            	Hent rettinger
