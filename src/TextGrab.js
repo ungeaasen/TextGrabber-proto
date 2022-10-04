@@ -2,16 +2,14 @@ import { useState, useEffect } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-//const leadsFromLocalStorage = JSON.parse( localStorage.getItem("myLeads") )
-//let locale = JSON.stringify(localStorage.getItem("name"));
 const myLeads = []
 
 
 export default function Textgrab() {
 	const [state, setState] = useState({
-        value:'',
-        show:''
-    });
+	  value:'',
+	  show:''
+  });
 	const [show, setShow] = useState(false)
 	const handleClose = () => setShow(false)
 	const handleShow = () => setShow(true)
@@ -21,21 +19,21 @@ export default function Textgrab() {
 
 	const handleChange = (e) => {
     setState({value: e.target.value})
-}
+	}
 
 	const handleSend = (e) => {
 		if (typeof window !== 'undefined') {
 			let locale = localStorage.getItem("name")
 			if(myLeads.indexOf(stringTo) <= -1) {
-				myLeads.push("Rettes fra:  " + stringTo)
-				myLeads.push("Rettes til: " + state.value)
-				
+				myLeads.push("name.from", stringTo)
+				myLeads.push("name.to", state.value)
+				myLeads.push("name.url", currentUrl)
 				localStorage.setItem("name", JSON.stringify(myLeads))
 				setState({value: e.target.value})
-
 				console.log("locale " + locale + "MyLeads: " + myLeads)
 				alert("Sendt inn til retting! :)")
 				handleClose()
+				window.dispatchEvent(new Event("storage"));
 			}
 		}
 	}
